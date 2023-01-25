@@ -11,7 +11,8 @@ async function getAllHadithApiHandler(req,res){
 
 
 async function getAllHadithToDatabaseHandler(req,res){
-    let allHadith = await hadithModel.find({});
+    let username = req.query.username
+    let allHadith = await hadithModel.find({username:username});
     res.send(allHadith)    
 
 }
@@ -26,7 +27,7 @@ async function addHadithInDatabaseHandler(req,res){
         hadithNarrator: englishNarrator,
         hadithEnglish: hadithEnglish,
         hadithChapter:chapterEnglish
-      })
+      });
 
       res.send(newHadith);
 
@@ -35,8 +36,9 @@ async function addHadithInDatabaseHandler(req,res){
 
 async function delHadithInDatabaseHandler(req,res){
     const id = req.params.id;
+    let username = req.query.username;
     let deletedHadith = await hadithModel.findByIdAndDelete(id);
-    let allHadith = await hadithModel.find({});
+    let allHadith = await hadithModel.find({username});
     res.send(allHadith)
     // res.send(`${deletedHadith.hadithName} has been deleted`);    
 }
@@ -45,15 +47,15 @@ async function delHadithInDatabaseHandler(req,res){
 async function updateHadithInDatabaseHandler(req,res){
     const id = req.params.id;
     console.log(`inside update`, req.body);
-    const {hadithName,hadithNarrator,hadithEnglish,hadithChapter} = req.body
-    let updatedHadith = await hadithModel.findByIdAndUpdate(id,{
+    const {hadithName,hadithNarrator,hadithEnglish,hadithChapter,username} = req.body
+    await hadithModel.findByIdAndUpdate(id,{
         hadithName,
         hadithNarrator,
         hadithEnglish,
         hadithChapter
 
     });
-    let allHadith = await hadithModel.find({});
+    let allHadith = await hadithModel.find({username});
     res.send(allHadith)
     // res.send(`${updatedHadith.hadithName} has been updated`);
 }
