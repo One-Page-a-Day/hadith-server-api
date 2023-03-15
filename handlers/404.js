@@ -1,7 +1,7 @@
 // 'use strict';
 
 
-// module.exports = (req,res,next)=>{
+// module.exports = (req,res)=>{
 //     res.status(404).json({
 //         code:404,
 //         message:'Route not found'
