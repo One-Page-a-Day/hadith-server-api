@@ -1,0 +1,17 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "2093d2a6-3b2b-45c5-a6b0-2bc5a0084eef",
+      "connectionOptions": {
+        "connectionString": "mongodb://localhost:27017/"
+      },
+      "favorite": {
+        "name": "localHost:27017"
+      }
+    }
+  ]
+}
